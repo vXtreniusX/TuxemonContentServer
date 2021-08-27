@@ -33,19 +33,19 @@ def get_packages_all():
     ]"""
     return json.dumps(packages, indent=4)
 
-@app.route("/api/packages/<author>/<name>")
-def get_package_info(author, name):
+@app.route("/api/packages/<name>")
+def get_package_info(name):
     try:
-        with open(f"packages/{author}/{name}/meta.json") as file:
+        with open(f"packages/{name}/meta.json") as file:
             return file.read()
     except FileNotFoundError:
         abort(404)
 
-@app.route("/api/packages/<author>/<name>/releases/")
-def get_package_releases(author, name):
+@app.route("/api/packages/<name>/releases/")
+def get_package_releases(name):
     return json.dumps(os.listdir(f"packages/{author.lower()}/{name}/releases"))
 
-@app.route("/packages/<author>/<name>/releases/<release>/download")
+@app.route("/packages/<name>/releases/<release>/download")
 def send_package(author, name, release):
     return send_from_directory(directory=f"packages/{author.lower()}/{name}/releases/{release}/", filename="pack.zip")
 

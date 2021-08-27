@@ -9,13 +9,13 @@ mkdir packages/package/releases
 mkdir packages/package/releases/0/
 
 echo "If you are seeing this file, everything works correctly" > packages/package/releases/0/message.txt
-echo "{
+echo '{
         "author": "author",
         "name": "package-name",
         "title": "Package Title",
         "short_description": "example package",
         "release": 0
-}" > packages/package/meta.json
+}' > packages/package/meta.json
 
 cd packages/package/releases/0/
 zip pack.zip message.txt

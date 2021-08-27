@@ -46,8 +46,8 @@ def get_package_releases(name):
     return json.dumps(os.listdir(f"packages/{author.lower()}/{name}/releases"))
 
 @app.route("/packages/<name>/releases/<release>/download")
-def send_package(author, name, release):
-    return send_from_directory(directory=f"packages/{author.lower()}/{name}/releases/{release}/", filename="pack.zip")
+def send_package(name, release):
+    return send_from_directory(directory=f"packages/{name}/releases/{release}/", filename="pack.zip")
 
 
 '''

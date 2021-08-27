@@ -1,6 +1,6 @@
 from flask import Flask, url_for, request, send_from_directory, abort
 import json
-
+import os
 from dir_walker import get_all_meta
 
 app = Flask(__name__)
@@ -40,6 +40,10 @@ def get_package_info(author, name):
             return file.read()
     except FileNotFoundError:
         abort(404)
+
+@app.route("/api/packages/<author>/<name>/releases/")
+def get_package_releases(author, name):
+    return json.dumps(os.listdir(f"packages/{author.lower()}/{name}/releases"))
 
 @app.route("/packages/<author>/<name>/releases/<release>/download")
 def send_package(author, name, release):

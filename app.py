@@ -31,13 +31,18 @@ def get_packages_all():
             "release": 0
         }
     ]"""
-    return json.dumps(packages, indent=4)
+    returned = []
+    for i in packages: 
+        i["repo"] = request.host_url
+        returned.append(i)
+    return json.dumps(returned, indent=4)
 
 @app.route("/api/packages/<name>")
 def get_package_info(name):
     try:
         with open(f"packages/{name}/meta.json") as file:
-            return file.read()
+            send = json.loads(file.read())
+            return {**send, **{"repo": request.host_url}}
     except FileNotFoundError:
         abort(404)
 

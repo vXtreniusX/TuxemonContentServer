@@ -15,4 +15,4 @@ Running
 flask run
 ```
 
-## [Usage of the api](/USAGE.md)
+[Usage of the api](/USAGE.md)

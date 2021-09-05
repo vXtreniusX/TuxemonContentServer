@@ -52,7 +52,7 @@ def get_package_releases(name):
 
 @app.route("/packages/<name>/releases/<release>/download")
 def send_package(name, release):
-    return send_from_directory(directory=f"packages/{name}/releases/{release}/", filename="pack.zip")
+    return send_from_directory(directory=f"packages/{name}/releases/{release}/", path="pack.zip")
 
 
 '''
